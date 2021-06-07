@@ -1,0 +1,99 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  firstname String
+  lastname  String
+  username  String   @unique
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+
+  Job     Job[]
+  Food    Food[]
+  Recipes Recipes[]
+  Order   Order[]
+  Save    Save[]
+  Apply   Apply[]
+}
+
+model Pay {
+  id      Int @id @default(autoincrement())
+  balance Int @default(0)
+
+}
+
+model Job {
+  id        Int      @id @default(autoincrement())
+  User      User     @relation(fields: [userId], references: [id])
+  userId    Int      @unique
+  media     String
+  title     String
+  location  String
+  createdAt DateTime @default(now())
+  Apply     Apply[]
+}
+
+model Food {
+  id        Int      @id @default(autoincrement())
+  User      User     @relation(fields: [userId], references: [id])
+  userId    Int      @unique
+  media     String
+  title     String
+  category  String
+  schedule  String
+  createdAt DateTime @default(now())
+  Order     Order[]
+  Save      Save[]
+}
+
+model Recipes {
+  id        Int      @id @default(autoincrement())
+  User      User     @relation(fields: [userId], references: [id])
+  userId    Int      @unique
+  media     String
+  title     String
+  category  String
+  createdAt DateTime @default(now())
+  Save      Save[]
+}
+
+model Order {
+  id        Int      @id @default(autoincrement())
+  User      User     @relation(fields: [userId], references: [id])
+  userId    Int      @unique
+  Food      Food     @relation(fields: [foodId], references: [id])
+  foodId    Int      @unique
+  createdAt DateTime @default(now())
+}
+
+model Apply {
+  id        Int      @id @default(autoincrement())
+  User      User     @relation(fields: [userId], references: [id])
+  userId    Int      @unique
+  Job       Job      @relation(fields: [jobId], references: [id])
+  jobId     Int      @unique
+  createdAt DateTime @default(now())
+}
+
+model Save {
+  id        Int      @id @default(autoincrement())
+  User      User     @relation(fields: [userId], references: [id])
+  userId    Int      @unique
+  Recipes   Recipes  @relation(fields: [recipesId], references: [id])
+  recipesId Int      @unique
+  createdAt DateTime @default(now())
+
+  Food   Food? @relation(fields: [foodId], references: [id])
+  foodId Int?
+}
