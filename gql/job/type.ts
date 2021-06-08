@@ -1,5 +1,5 @@
-import { Field, InputType } from "type-graphql";
-
+import { Field, InputType, ObjectType } from "type-graphql";
+import { Job, User } from '../types'
 
 @InputType()
 export class JobInput {
@@ -13,3 +13,8 @@ export class JobInput {
         location: string
 }
 
+@ObjectType()
+export class JobType extends Job {
+        @Field()
+        User: User
+}

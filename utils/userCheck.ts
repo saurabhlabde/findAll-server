@@ -1,9 +1,9 @@
 import { UserInputError } from "apollo-server";
-import checkAuth from "./authCheck";
+import { checkAuth } from "./authCheck";
 import { throwMessage } from "./message";
 import { PrismaType } from '../index'
 
-const userCheck = async (ctx: any) => {
+export const userCheck = async (ctx: any) => {
 
         const user: any = checkAuth(ctx);
 
@@ -18,6 +18,7 @@ const userCheck = async (ctx: any) => {
 
                 throw new UserInputError("NOT_FOUND", { message_ });
         }
+
         const prisma: PrismaType = ctx.prisma
 
         const auth: any = await prisma.user.findFirst({
@@ -36,7 +37,6 @@ const userCheck = async (ctx: any) => {
                 throw new UserInputError("NOT_FOUND", { message_ });
         }
 
-        return { auth, user };
+        return { auth, };
 };
 
-export default userCheck;

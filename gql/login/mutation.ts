@@ -46,9 +46,6 @@ export class LoginResolver {
                         throw new UserInputError("NOT_FOUND", { message_ });
                 }
 
-                console.log(userExist, 'userExist');
-
-
                 const tokenUserInfo = {
                         id: userExist.id,
                         username: userExist.username

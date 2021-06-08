@@ -1,4 +1,5 @@
-import { Field, InputType } from 'type-graphql'
+import { Field, InputType, ObjectType } from 'type-graphql'
+import { Food, User } from '../types'
 
 
 @InputType()
@@ -14,4 +15,10 @@ export class FoodInput {
 
         @Field()
         schedule: string
+}
+
+@ObjectType()
+export class FoodType extends Food {
+        @Field()
+        User: User
 }
