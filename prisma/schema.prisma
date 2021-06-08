@@ -26,6 +26,7 @@ model User {
   Save    Save[]
   Apply   Apply[]
   Tokens  Tokens[]
+
   @@map("user")
 }
 
@@ -35,12 +36,15 @@ model Tokens {
   userId    Int      @unique
   token     String
   createdAt DateTime @default(now())
+
+  @@map("tokens")
 }
 
 model Pay {
   id      Int @id @default(autoincrement())
   balance Int @default(0)
 
+  @@map("pay")
 }
 
 model Job {
@@ -52,6 +56,8 @@ model Job {
   location  String
   createdAt DateTime @default(now())
   Apply     Apply[]
+
+  @@map("job")
 }
 
 model Food {
@@ -65,6 +71,8 @@ model Food {
   createdAt DateTime @default(now())
   Order     Order[]
   Save      Save[]
+
+  @@map("food")
 }
 
 model Recipes {
@@ -76,6 +84,8 @@ model Recipes {
   category  String
   createdAt DateTime @default(now())
   Save      Save[]
+
+  @@map("recipes")
 }
 
 model Order {
@@ -85,6 +95,8 @@ model Order {
   Food      Food     @relation(fields: [foodId], references: [id])
   foodId    Int      @unique
   createdAt DateTime @default(now())
+
+  @@map("order")
 }
 
 model Apply {
@@ -94,6 +106,8 @@ model Apply {
   Job       Job      @relation(fields: [jobId], references: [id])
   jobId     Int      @unique
   createdAt DateTime @default(now())
+
+  @@map("apply")
 }
 
 model Save {
@@ -106,4 +120,7 @@ model Save {
 
   Food   Food? @relation(fields: [foodId], references: [id])
   foodId Int?
+
+
+  @@map("save")
 }
