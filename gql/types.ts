@@ -163,8 +163,22 @@ export class Order {
 
         @Field()
         createdAt: string
-}
 
+        @Field()
+        street: string
+
+        @Field()
+        city: string
+
+        @Field()
+        state: string
+
+        @Field()
+        zipCode: number
+
+        @Field()
+        phoneNumber: number
+}
 
 @ObjectType()
 export class Apply {
@@ -179,6 +193,15 @@ export class Apply {
 
         @Field()
         createdAt: string
+
+        @Field()
+        eduction: string
+
+        @Field()
+        city: string
+
+        @Field()
+        zipCode: number
 }
 
 @ObjectType()
@@ -198,8 +221,5 @@ export class Save {
         @Field()
         foodId?: number
 }
-
-
-
 
 

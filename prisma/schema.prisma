@@ -89,23 +89,32 @@ model Recipes {
 }
 
 model Order {
-  id        Int      @id @default(autoincrement())
-  User      User     @relation(fields: [userId], references: [id])
-  userId    Int
-  Food      Food     @relation(fields: [foodId], references: [id])
-  foodId    Int
-  createdAt DateTime @default(now())
+  id          Int      @id @default(autoincrement())
+  User        User     @relation(fields: [userId], references: [id])
+  userId      Int
+  Food        Food     @relation(fields: [foodId], references: [id])
+  foodId      Int
+  street      String
+  city        String
+  state       String
+  zipCode     Int
+  phoneNumber Int
+  createdAt   DateTime @default(now())
 
   @@map("order")
 }
 
 model Apply {
-  id        Int      @id @default(autoincrement())
-  User      User     @relation(fields: [userId], references: [id])
-  userId    Int
-  Job       Job      @relation(fields: [jobId], references: [id])
-  jobId     Int
-  createdAt DateTime @default(now())
+  id          Int      @id @default(autoincrement())
+  User        User     @relation(fields: [userId], references: [id])
+  userId      Int
+  Job         Job      @relation(fields: [jobId], references: [id])
+  jobId       Int
+  eduction    String
+  city        String
+  zipCode     Int
+  phoneNumber Int
+  createdAt   DateTime @default(now())
 
   @@map("apply")
 }
